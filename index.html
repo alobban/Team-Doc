@@ -44,9 +44,9 @@
 
             <h4>Step Two - Apache with Phusion Passenger</h4>
             <p>Once RVM is install, ensure that you have the latest version of Ruby:</p>
-            <p class="well">rvm install x.x.x</p>
+            <p class="well">rvm install 2.1.x</p>
             <p>Now set RVM to use the latest version of Ruby:</p>
-            <p class="well">rvm use --default x.x.x</p>
+            <p class="well">rvm use --default 2.1.x</p>
             <p>Now install the passenger gem:</p>
             <p class="well">gem install passenger</p>
             <p>Run command to start the apache installation:</p>
@@ -105,6 +105,23 @@
 
         <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
 
+        <section id="git" class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Git</h3>
+          </div>
+
+          <div class="panel-body">
+            <p>Install git by running this command</p>
+            <p class="well">sudo apt-get install git</p>
+            <p>The Rails app lives in a private repository on <a href="https://github.com/CouponTrade/competitor_scraper" target="_blank">Github</a>. In order to clone the app, please traverse to a selected directory path. It is common practice to create a folder in the user's home directory. However, that is optional.</p>
+            <p>To clone the Rails, invoke the following command in a local directory.</p>
+            <p class="well">git clone git@github.com:CouponTrade/competitor_scraper.git</p>
+            <p>Once git has cloned the rails app, Apache's configuration file needs to be updated. The document root is required to be pointing to the app's public directory. This is visible in the following section.</p>
+          </div>
+        </section>
+
+        <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
+
         <section id="tweaks1" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Apache Webserver Tweaks</h3>
@@ -114,7 +131,7 @@
             <p>To have Apache service start automatically when system boots, invoke this command:</p>
             <p class="well">chkconfig httpd on</p>
             <p>To <b>start|stop|restart</b> Apache:</p>
-            <p class="well">service httpd <b>start|stop|restart</b></p>
+            <p class="well">sudo service httpd <b>start|stop|restart</b></p>
             <p>Additionally, the environment that the server is being hosted in needs to be set. Here's an example of how to set the Rails Environment. Visit the Apache’s config file (/etc/httpd/conf/httpd.conf) and go to the end of file and make the necessary updates.</p>
             <p><b>RackEnv development</b></p>
             <p class="well">
@@ -123,10 +140,11 @@
               <br>
               <br>
               &lt;VirtualHost *:80&gt; <br>
-               &nbsp;ServerName www.yourhost.com <br>
+               &nbsp;# ServerName www.yourhost.com <br>
                &nbsp;# !!! Be sure to point DocumentRoot to 'public'! <br>
-               &nbsp;DocumentRoot /var/www/html/helloapp/public <br>
-               &nbsp;&lt;Directory /var/www/html/helloapp/public&gt; <br>
+               &nbsp;DocumentRoot /home/ec2-user/projects/scraper_app/public <br>
+               &nbsp;# RailsEnv production  ## This is defaulted <br>
+               &nbsp;&lt;Directory /home/ec2-user/projects/scraper_app/public&gt; <br>
                &nbsp;# This relaxes Apache security settings. <br>
                &nbsp;AllowOverride all <br>
                &nbsp;# MultiViews must be turned off. <br>
@@ -155,17 +173,33 @@
             <p>To have MySQL service start automatically when system boots, invoke this command:</p>
             <p class="well">chkconfig mysqld on</p>
             <p>To <b>start|stop|restart</b> MySQL:</p>
-            <p class="well">service mysqld <b>start|stop|restart</b></p>
+            <p class="well">sudo service mysqld <b>start|stop|restart</b></p>
           </div>
         </section>
 
         <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
 
+        <section id="tweaks2" class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Rails App Launch</h3>
+          </div>
+
+          <div class="panel-body">
+            <p>Once all the settings have been completed above, all that is left to do is to configure the <b>database.yml</b> file and migrate the database.</p> 
+            <p>We can do this by invoke the following command from within the root of the Rails app:</p>
+            <p class="well">rake db:create &amp;&amp; rake db:migrate</p>
+            <p>Restart Apache:</p>
+            <p class="well">sudo service httpd restart</p>
+            <p>That's it <span class="glyphicon glyphicon-ok"></span></p>
+          </div>
+
+        </section>
+        
       </article>
 
     </main>
 
-    <aside class="sidebar col-sm-12 col-md-4" style="margin-top: 100px;">
+    <aside class="sidebar col-sm-12 col-md-4" style="margin-top: 103px;">
 
       <div class="panel panel-info">
         <header class="panel-heading">
