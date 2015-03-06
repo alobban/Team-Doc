@@ -115,6 +115,31 @@
             <p class="well">chkconfig httpd on</p>
             <p>To <b>start|stop|restart</b> Apache:</p>
             <p class="well">service httpd <b>start|stop|restart</b></p>
+            <p>Additionally, the environment that the server is being hosted in needs to be set. Here's an example of how to set the Rails Environment. Visit the Apache’s config file (/etc/httpd/conf/httpd.conf) and go to the end of file and make the necessary updates.</p>
+            <p><b>RackEnv development</b></p>
+            <p class="well">
+              RackEnv development
+              <br>
+              <br>
+              <br>
+              &lt;VirtualHost *:80&gt; <br>
+               &nbsp;ServerName www.yourhost.com <br>
+               &nbsp;# !!! Be sure to point DocumentRoot to 'public'! <br>
+               &nbsp;DocumentRoot /var/www/html/helloapp/public <br>
+               &nbsp;&lt;Directory /var/www/html/helloapp/public&gt; <br>
+               &nbsp;# This relaxes Apache security settings. <br>
+               &nbsp;AllowOverride all <br>
+               &nbsp;# MultiViews must be turned off. <br>
+               &nbsp;Options -MultiViews <br>
+               &nbsp;&lt;/Directory&gt; <br>
+               &nbsp;PassengerSpawnMethod direct<br>
+               &nbsp;# Mod for Rufus-Scheduler gem<br>
+               &nbsp;PassengerMaxPoolSize 1<br>
+               &nbsp;RailsAppSpawnerIdleTime 0<br>
+               &nbsp;PassengerMinInstances 1<br>
+              &lt;/VirtualHost&gt; 
+            </p>
+            <p class="text-uppercase"><strong>Don't forget to bounce the server after saving and exiting.</strong></p>
           </div>
         </section>
 
