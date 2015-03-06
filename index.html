@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Team</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header id="home" class="jumbotron">
+      <h1 class="text-uppercase">Data Team Wiki</h1>
+    </header>
+
+    <main class="main col-sm-12 col-md-8" role="main">
+
+      <header>
+        <h2 class="page-header text-uppercase">Data Engineer</h2>
+      </header>
+
+      <article class="content">
+
+        <section id="ramup" class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Installing Rails, Apache and MySQL on Ubuntu with Passenger</h3>
+          </div>
+          <div class="panel-body">
+            <p>I am assuming you are using Ubuntu.</p>
+
+            <h4>Step One - Rails Ready</h4>
+            <p>From within terminal, execute the following command.</p>
+            <p class="well">wget --no-check-certificate https://raw.github.com/joshfng/railsready/master/railsready.sh &amp;&amp; bash railsready.sh</p>
+            <p>Overall the installation does take a while—be prepared to wait.</p>
+            <p>Once Rails Ready has completed installation, the platform will be fully equipped with Ruby, Gems, and Rails. However, following the instructions on screen, you will need to <em>logout and back in to the terminal to access Ruby</em>.</p>
+
+            <h4>Step Two - Apache with Phusion Passenger</h4>
+            <p>Once RVM is install, ensure that you have the latest version of Ruby:</p>
+            <p class="well">rvm install x.x.x</p>
+            <p>Now set RVM to use the latest version of Ruby:</p>
+            <p class="well">rvm use --default x.x.x</p>
+            <p>Now install the passenger gem:</p>
+            <p class="well">gem install passenger</p>
+            <p>Run command to start the apache installation:</p>
+            <p class="well">passenger-install-apache2-module</p>
+
+            <h4>Step Three - Update the Apache configuration</h4>
+            <p>Passenger will display this test after Apache installs:</p>
+            <p>The Apache 2 module was successfully installed.</p>
+            <p>During the installation there will output a set of lines that need to be added to Apache config file to enable Passenger. These lines will look similar to below:</p>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <p>
+                LoadModule passenger_module /home/username/.rvm/gems/ruby-2.1.4/gems/passenger-4.0.53/buildout/apache2/mod_passenger.so
+                <br>
+                <span style="margin-left: 20px;">&lt;IfModule mod_passenger.c&gt;</span>
+                <br>
+                <span style="margin-left: 40px;">PassengerRoot /home/username/.rvm/gems/ruby-2.1.4/gems/passenger-4.0.53</span>
+                <br>
+                <span style="margin-left: 40px;">PassengerDefaultRuby /home/username/.rvm/gems/ruby-2.1.4/wrappers/ruby</span>
+                <br>
+                <span style="margin-left: 20px;">&lt;/IfModule&gt;</span>
+              </p>
+            </div>
+            <p class="lead">You will need sudo access to edit Apache's config file. Remember to Save and Exit.</p>
+
+            <h4>Step Four - MySQL</h4>
+            <p>Again from the terminal, execute these commands:</p>
+            <p class="well">
+              sudo apt-get update <br>
+              sudo apt-get install mysql-server
+            </p>
+            <p>During the installation , MySQL will ask you to set a root password. If you didn't or missed the opportunity to, you can set the password later from within the MySQL shell using the command below:</p>
+            <p class="well">UPDATE mysql.user SET Password = PASSWORD('password') WHERE User = 'root';</p>
+            <p><span class="glyphicon glyphicon-thumbs-up"></span> Congratulations! <br>You have now completed the install and Ruby on Rails, Apache and MySQL are ready to use on Ubuntu server!</p>
+          </div>
+        </section>
+
+        <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
+
+      </article>
+
+    </main>
+
+    <aside class="sidebar col-sm-12 col-md-4">
+
+      <div class="panel panel-info">
+        <header class="panel-heading">
+          <h4 class="page-title text-uppercase" style="margin-top: 30px;">Wiki Links</h4>
+        </header>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item"><a href="#ramup"><span class="glyphicon glyphicon-hand-right"></span> Install Rails, Apache and MySQL</a></p>
+            <li class="list-group-item"><a href="#ramup"><span class="glyphicon glyphicon-hand-right"></span> Setting Up Rails Environment</a></p>
+            <li class="list-group-item"><a href="#ramup"><span class="glyphicon glyphicon-hand-right"></span> Setting Up Rails Environment</a></p>
+        </ul>
+        </div>
+      </div>
+    </aside>
+
+    <div style="clear: both;"></div>
+
+    <footer class="panel panel-default" role="contentinfo" style="margin-bottom: 0;">
+      <div class="panel-footer container">
+        <p>&copy; Copyright Raise.com 2015</p>
+      </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
