@@ -18,7 +18,7 @@
   </head>
   <body>
     <header id="home" class="jumbotron">
-      <h1 class="text-uppercase">Data Team Wiki</h1>
+      <h1 class="text-uppercase text-center">Data Team Wiki</h1>
     </header>
 
     <main class="main col-sm-12 col-md-8" role="main">
@@ -29,7 +29,7 @@
 
       <article class="content">
 
-        <section id="ramup" class="panel panel-default">
+        <section id="ramup" class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">Installing Rails, Apache and MySQL on Ubuntu with Passenger</h3>
           </div>
@@ -85,20 +85,40 @@
 
         <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
 
+        <section id="cron" class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Add CRON Jobs</h3>
+          </div>
+
+          <div class="panel-body">
+            <p>On the Ubuntu server, we need to set a few CRON tasks. From command line, type the following:</p>
+            <p class="well">env EDITOR=nano crontab -e</p>
+            <p>Then paste and edit these tasks to reflect current settings.</p>
+            <p class="well">
+              0 23  * * * /usr/bin/mysqldump -u root -p[<i>password</i>] -R scraper_development --ignore-table=scraper_development.test_listings | gzip > /home/ec2-user/backup/mysqldump-scraper_development.sql.gz <br><br>
+              15  0 * * * aws s3 cp ~/backup/mysqldump-scraper_development.sql.gz s3://scraperdata/mysqldump/mysqldump-scraper_development.sql.gz --content-type text/plain --content-encoding gzip >/dev/null 2>&amp;1 <br><br>
+              0 * * * * aws s3 cp ~/backup/cardcash.csv.gz s3://scraperdata/mysqldump/cardcash.csv.gz --content-type text/plain --content-encoding gzip --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers >/dev/null 2>&amp;1
+            </p>
+            <p>Save and Exit nano.</p>
+          </div>
+        </section>
+
+        <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
+
       </article>
 
     </main>
 
-    <aside class="sidebar col-sm-12 col-md-4">
+    <aside class="sidebar col-sm-12 col-md-4" style="margin-top: 100px;">
 
       <div class="panel panel-info">
         <header class="panel-heading">
-          <h4 class="page-title text-uppercase" style="margin-top: 30px;">Wiki Links</h4>
+          <h4 class="panel-title text-uppercase">Wiki Links</h4>
         </header>
         <div class="panel-body">
           <ul class="list-group">
             <li class="list-group-item"><a href="#ramup"><span class="glyphicon glyphicon-hand-right"></span> Install Rails, Apache and MySQL</a></p>
-            <li class="list-group-item"><a href="#ramup"><span class="glyphicon glyphicon-hand-right"></span> Setting Up Rails Environment</a></p>
+            <li class="list-group-item"><a href="#cron"><span class="glyphicon glyphicon-hand-right"></span> Setting Up CRON</a></p>
             <li class="list-group-item"><a href="#ramup"><span class="glyphicon glyphicon-hand-right"></span> Setting Up Rails Environment</a></p>
         </ul>
         </div>
@@ -109,7 +129,7 @@
 
     <footer class="panel panel-default" role="contentinfo" style="margin-bottom: 0;">
       <div class="panel-footer container">
-        <p>&copy; Copyright Raise.com 2015</p>
+        <p>&copy; Copyright 2015 <a href="mailto:andrewglobban@gmail.com">Andrew Lobban</a></p>
       </div>
     </footer>
 
