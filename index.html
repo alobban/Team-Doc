@@ -197,6 +197,21 @@
         </section>
 
         <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
+
+        <section id="mysql" class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">MySQL Database Restore</h3>
+          </div>
+
+          <div class="panel-body">
+            <p>If you have noticed in the CRON section that a MySQL Dump is being performed nightly, then you would know in the case of disaster recovery there would need to be a database restoration.</p>
+            <p>The MySQL dump is being stored in the <abbr title="Amazon Web Services" class="initialism">AWS</abbr> <abbr title="Simple Storage Service" class="initialism">S3</abbr> scraperdata bucket.</p>
+            <p>To restore the data, please update and invoke the command below:</p>
+            <p class="well">mysql -u [username] -p[password] [database name] &lt; [location of dump file]</p>
+          </div>
+        </section>
+
+        <div class="text-right"><a href="#home"><span class="glyphicon glyphicon-hand-up"></span> Back to the Top</a></div>
         
       </article>
 
@@ -216,6 +231,7 @@
             <li class="list-group-item"><a href="#tweaks1"><span class="glyphicon glyphicon-hand-right"></span> Apache Webserver Tweaks</a></li>
             <li class="list-group-item"><a href="#tweaks2"><span class="glyphicon glyphicon-hand-right"></span> MySQL Server Tweaks</a></li>
             <li class="list-group-item"><a href="#rails-notes"><span class="glyphicon glyphicon-hand-right"></span> Rails App Launch</a></li>
+            <li class="list-group-item"><a href="#mysql"><span class="glyphicon glyphicon-hand-right"></span> Rails App Launch</a></li>
         </ul>
         </div>
       </div>
