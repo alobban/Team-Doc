@@ -186,8 +186,10 @@
 
           <div class="panel-body">
             <p>Once all the settings have been completed above, all that is left to do is to configure the <b>database.yml</b> file and migrate the database.</p> 
-            <p>We can do this by invoke the following command from within the root of the Rails app:</p>
+            <p>We can do this by invoking the following command from within the root of the Rails app:</p>
             <p class="well">rake db:create &amp;&amp; rake db:migrate</p>
+            <p>Alternatively, you can manually create the MySQL database, configure the database.yml file accordingly, and then invoke the following command:</p>
+            <p class="well">rake db:migrate</p>
             <p>Restart Apache:</p>
             <p class="well">sudo service httpd restart</p>
             <p>That's it <span class="glyphicon glyphicon-ok"></span></p>
