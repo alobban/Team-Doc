@@ -208,6 +208,8 @@
             <p>The MySQL dump is being stored in the <abbr title="Amazon Web Services" class="initialism">AWS</abbr> <abbr title="Simple Storage Service" class="initialism">S3</abbr> scraperdata bucket.</p>
             <p>To restore the data, please update and invoke the command below:</p>
             <p class="well">mysql -u [username] -p[password] [database name] &lt; [location of dump file]</p>
+            <p>Recovery dump has built-in Store Procedures that process the transactional information from both competitors. Since the current model incorporates Store Pocedures, the app will be complete as the database is restored.</p>
+            <p>Next object is to remove such logic from the DB and contain it at the application level.</p>
           </div>
         </section>
 
