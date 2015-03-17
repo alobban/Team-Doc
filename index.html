@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Andrew Lobban">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Data Team</title>
 
@@ -20,6 +21,7 @@
     <header id="home" class="jumbotron">
       <h1 class="text-uppercase text-center">Data Team Wiki</h1>
       <p class="text-center">This wiki will serve as documentation to all the services covered by <abbr title="Raise Data Team" class="initialism">RDT</abbr></p>
+      <p class="text-center">For additional resources, please <a href="bookmarks_3_17_15.html" target="_blank">click here</a>.</p>
     </header>
 
     <main class="main col-sm-12 col-md-8" role="main">
@@ -39,6 +41,7 @@
             <p>Please visit the documentations provided by Amazon.</p>
             <p class="well well-sm"><a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html</a></p>
             <p class="well well-sm"><a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html</a></p>
+            <p>Use these documentations to properly setup and configure your Linux EC2 instance.</p>
           </div>
         </section>
 
@@ -49,7 +52,7 @@
             <h3 class="panel-title">Installing Rails, Apache and MySQL on Ubuntu with Passenger</h3>
           </div>
           <div class="panel-body">
-            <p>I am assuming you are using Ubuntu.</p>
+            <p>I am assuming you are using your Terminal and have successfully SSH'd into your EC2.</p>
 
             <h4>Step One - Rails Ready</h4>
             <p>From within terminal, execute the following command.</p>
@@ -70,7 +73,7 @@
             <h4>Step Three - Update the Apache configuration</h4>
             <p>Passenger will display this test after Apache installs:</p>
             <p>The Apache 2 module was successfully installed.</p>
-            <p>During the installation there will output a set of lines that need to be added to Apache config file to enable Passenger. These lines will look similar to below:</p>
+            <p>During the installation there will output a set of lines that need to be added to Apache config file <b>(/etc/httpd/conf/httpd.conf)</b> to enable Passenger. These lines will look similar to below:</p>
             <div class="alert alert-warning alert-dismissible" role="alert">
               <p>
                 LoadModule passenger_module /home/username/.rvm/gems/ruby-2.1.4/gems/passenger-4.0.53/buildout/apache2/mod_passenger.so
@@ -147,7 +150,7 @@
             <p class="well">chkconfig httpd on</p>
             <p>To <b>start|stop|restart</b> Apache:</p>
             <p class="well">sudo service httpd <b>start|stop|restart</b></p>
-            <p>Additionally, the environment that the server is being hosted in needs to be set. Here's an example of how to set the Rails Environment. Visit the Apache’s config file (/etc/httpd/conf/httpd.conf) and go to the end of file and make the necessary updates.</p>
+            <p>Additionally, the environment that the server is being hosted in needs to be set. Here's an example of how to set the Rails Environment. Visit the Apache’s config file <b>(/etc/httpd/conf/httpd.conf)</b> and go to the end of file and make the necessary updates.</p>
             <p><b>RackEnv development</b></p>
             <p class="well">
               RackEnv development
@@ -173,7 +176,7 @@
               &lt;/VirtualHost&gt; 
             </p>
             <p>There is a copy of the current httpd.conf file in <abbr title="Amazon Web Services" class="initialism">AWS</abbr> <abbr title="Simple Storage Service" class="initialism">S3</abbr>.</p>
-            <p class="text-uppercase"><strong>Don't forget to bounce the server after saving and exiting.</strong></p>
+            <p class="text-uppercase"><strong>Don't forget to bounce (restart) the server after saving and exiting.</strong></p>
           </div>
         </section>
 
@@ -259,7 +262,7 @@
 
     <footer class="panel panel-default" role="contentinfo" style="margin-bottom: 0;">
       <div class="panel-footer container">
-        <p>&copy; Copyright 2015 <a href="mailto:andrewglobban@gmail.com">Andrew Lobban</a></p>
+        <p>&copy; Copyright 2015 <a href="mailto:data@raise.com">Raise Data</a></p>
       </div>
     </footer>
 
